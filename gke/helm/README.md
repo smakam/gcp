@@ -30,3 +30,7 @@ helm install ./helloapp
 
 helm install --set mynodeport=30503 ./helloapp
 - This will pass nodeport=30503 to service manifest using helm templates. 
+
+**Delete**
+
+helm delete \<releasename\>

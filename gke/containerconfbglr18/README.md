@@ -6,7 +6,7 @@ There are 3 parts:
  - Illustrating Nodeport, Load balancer and Ingress along with Network control policy with Bookshelf multi-container application
  - Illustrate Istio service mesh with Bookshelf multi-service application
 
- **Multi-container pod:**
+## Multi-container pod
 
      multicontpod/pod.yaml
 There are 2 containers "nginx" and "alpine" with a shared volume. This example illustrates:
@@ -27,6 +27,7 @@ There are 2 containers "nginx" and "alpine" with a shared volume. This example i
 **Cluster creation:**
 
 This example uses a single cluster with 2 namespaces "default" and "dev". "dev" namespace is used to illustrate load balancer and network control policy. "default" namespace is used to illustrate Istio service mesh.
+
 *Create cluster:*
 
     make create-cluster
@@ -35,7 +36,7 @@ Create namespace:
 
     make create-ns
 
-**Nodeport, Load balancer and Ingress**
+## Nodeport, Load balancer and Ingress
 
 File: bookshelf/bookshelf.yaml
 
@@ -108,7 +109,8 @@ At this point, the reviews service will not be accessible.
 
     make deletenetrules
 
-**Istio service mesh:**
+## Istio service mesh
+
 The first step is to deploy Istio in the cluster. This includes Istio control plane services like Pilot, mixer, Citadel and dataplane service Envoy.
 
     make deploy-istio
@@ -164,12 +166,16 @@ zipkin ClusterIP  None <none> 9411/TCP 2d
 
 No resources found.
 ```
-*Monitor services:*
+**Monitor services:**
+
 Istio provides nice integration with third party monitoring, tracing and visualization services. For this application, we have deployed Grafana for monitoring, Jaeger for tracing, dotviz for service visualization.
+
 *Start monitoring:*
+
 make start-monitoring-services
 
 *Access monitoring:*
+
 http://localhost:3000
 Access visualization:
 http://localhost:8088/dotviz
@@ -182,6 +188,7 @@ http://http://localhost:16686/
 When application is deployed on top of Istio, the proxy gets created for each application pod. 
 
 *Using Istio rules:*
+
 Initially, the reviews service will get load balanced between the 3 versions.
 Lets make a change to use only version v1:
 

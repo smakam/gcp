@@ -111,6 +111,14 @@ At this point, the reviews service will not be accessible.
     make deletenetrules
 
 ## Istio service mesh
+**Pre-requisites:**
+Install istioctl:
+
+[https://istio.io/docs/setup/kubernetes/quick-start.html#installation-steps](https://istio.io/docs/setup/kubernetes/quick-start.html#installation-steps)
+
+curl -L https://git.io/getLatestIstio | sh -
+
+**Install Istio:**
 
 The first step is to deploy Istio in the cluster. This includes Istio control plane services like Pilot, mixer, Citadel and dataplane service Envoy.
 

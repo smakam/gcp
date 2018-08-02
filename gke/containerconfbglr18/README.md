@@ -25,6 +25,7 @@ There are 2 containers "nginx" and "alpine" with a shared volume. This example i
 
 ```
 **Cluster creation:**
+
 This example uses a single cluster with 2 namespaces "default" and "dev". "dev" namespace is used to illustrate load balancer and network control policy. "default" namespace is used to illustrate Istio service mesh.
 Create cluster:
 
@@ -35,6 +36,7 @@ Create namespace:
     make create-ns
 
 **Nodeport, Load balancer and Ingress**
+
 bookshelf/bookshelf.yaml
 To deploy the entire application:
 
@@ -78,6 +80,7 @@ NAME  HOSTS  ADDRESS PORTS AGE
 gateway mydomain.com 35.241.52.239 80  2h
 ```
 **Network control policy**
+
 GKE uses Calico to implement Network control policy.
 I have created 2 policies:
 networkpolicy/allow_reviews_from_product.yaml - This allows only "productpage" to talk to "reviews" service.

@@ -1,9 +1,10 @@
 ﻿This file contains instructions for running through the Kubernetes networking demo. This was presented in Container conference, Bangalore. GKE is used here. 
 All commands are listed in "**Makefile**".
-There are 3 parts:
+There are 4 parts:
 
  - Multi-container pod 
- - Illustrating Nodeport, Load balancer and Ingress along with Network control policy with Bookshelf multi-container application
+ - Illustrating Nodeport, Load balancer and Ingress with Bookshelf multi-container application.
+ - Network control policy 
  - Illustrate Istio service mesh with Bookshelf multi-service application
 
 ## Multi-container pod
@@ -83,7 +84,7 @@ gateway mydomain.com 35.241.52.239 80  2h
 ```
 Load balancer IP address is the Network load balancer endpoint in GCP. Ingress IP address is the GLB endpoint in GCP. 
 
-**Network control policy**
+## Network control policy
 
 GKE uses Calico to implement Network control policy.
 I have created 2 policies:
@@ -177,8 +178,10 @@ make start-monitoring-services
 *Access monitoring:*
 
 http://localhost:3000
+
 Access visualization:
 http://localhost:8088/dotviz
+
 Access tracing:
 http://http://localhost:16686/
 

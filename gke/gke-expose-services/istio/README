@@ -1,0 +1,4 @@
+# Create services
+kubectl apply -f istio
+# Delete services
+kubectl delete -f istio

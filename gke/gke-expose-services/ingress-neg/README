@@ -1,10 +1,4 @@
-kubectl apply -f hello-deployment.yaml
-kubectl apply -f hello-service.yaml
-kubectl apply -f hello-ingress.yaml
-
-kubectl apply -f hello-deployment-v2.yaml 
-kubectl apply -f hello-service-v2.yaml
-kubectl apply -f hello-fanout-ingress.yaml
-
-kubectl apply -f ingress
-kubectl delete -f ingress
+# Create services
+kubectl apply -f ingress-neg
+# Delete services
+kubectl delete -f ingress-neg

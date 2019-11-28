@@ -1,0 +1,5 @@
+kubectl apply -f nlb
+kubectl delete -f nlb
+
+Service access:
+curl <load balancer ip>:8080

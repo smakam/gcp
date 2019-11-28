@@ -1,6 +1,6 @@
 ﻿This file contains instructions for running through the Kubernetes networking demo. This was presented in Container conference, Bangalore. GKE is used here. 
 All commands are listed in "**Makefile**".
-There are 4 parts:
+There are 4 parts::
 
  - Multi-container pod 
  - Illustrating Nodeport, Load balancer and Ingress with Bookshelf multi-container application.

@@ -1,0 +1,9 @@
+# Create services
+kubectl apply -f istio1
+# Delete services
+kubectl delete -f istio1
+
+Apply virtual service:
+kubectl apply -f istio1/traffic-mgmt/istio-service-v1.yaml
+
+kubectl apply -f istio1/traffic-mgmt/istio-service-v1-20-v2-80.yaml

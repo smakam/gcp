@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client1
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: client1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: client1
+    spec:
+      containers:
+      - image: byrnedo/alpine-curl
+        imagePullPolicy: IfNotPresent
+        name: client
+        command: ["sh", "-c"]
+        args: ["while true; do wget -qO- --timeout=2 http://hello.default.svc:8080; sleep 2; done"]

@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: istio-system
+spec:
+  rules:
+  - host: example.project.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          # In this case we don't go directly to app-specific services,
+          # but first to the Istio ingress-gateway
+          # We use port 80 because it is the "ingress-like" port of the ingress-gateway
+          serviceName: istio-ingressgateway
+          servicePort: 80

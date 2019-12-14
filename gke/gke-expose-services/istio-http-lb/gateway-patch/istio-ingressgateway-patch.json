@@ -1,0 +1,16 @@
+[
+  {
+    "op": "add",
+    "path": "/metadata/annotations/cloud.google.com~1neg",
+    "value": "{\"ingress\": true}"
+  },
+  {
+    "op": "replace",
+    "path": "/spec/type",
+    "value": "NodePort"
+  },
+  {
+    "op": "remove",
+    "path": "/status"
+  }
+]

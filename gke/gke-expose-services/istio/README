@@ -1,3 +1,4 @@
+# Istio example where Virtual service is mapped to 2 different kubernetes services
 # Create services
 kubectl apply -f istio
 # Delete services

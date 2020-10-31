@@ -29,6 +29,7 @@ steps:
 # replaced by Cloud Build.
 - name: 'gcr.io/cloud-builders/docker'
   id: Push
+  dir: 'cloudbuild/cicd/hello-cloudbuild-app'
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/hello-cloudbuild:$SHORT_SHA'
@@ -38,6 +39,7 @@ steps:
 # This step clones the hello-cloudbuild-env repository
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Clone env repository
+  dir: 'cloudbuild/cicd/hello-cloudbuild-app'
   entrypoint: /bin/sh
   args:
   - '-c'
@@ -50,6 +52,7 @@ steps:
 # This step generates the new manifest
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Generate manifest
+  dir: 'cloudbuild/cicd/hello-cloudbuild-app'
   entrypoint: /bin/sh
   args:
   - '-c'
@@ -60,6 +63,7 @@ steps:
 # This step pushes the manifest back to hello-cloudbuild-env
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Push manifest
+  dir: 'cloudbuild/cicd/hello-cloudbuild-app'
   entrypoint: /bin/sh
   args:
   - '-c'

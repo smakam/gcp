@@ -17,6 +17,7 @@ steps:
 # This step builds the container image.
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
+  dir: 'cloudbuild/cicd/hello-cloudbuild-app'
   args:
   - 'build'
   - '-t'

@@ -1,6 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
+  dir: 'cloudbuild/onprem'
   id: Deploy to GKE onprem
   args:
   - '-c'

@@ -8,7 +8,7 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
+    gcloud alpha container hub memberships get-credentials hipster-cluster && \
     kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
 
 

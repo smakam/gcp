@@ -12,6 +12,20 @@
 #     kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
 
 
+# steps:
+# # This step deploys the new version of our container image
+# # in the hello-cloudbuild Kubernetes Engine cluster.
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   id: Deploy
+#   dir: 'cloudbuild/onprem'
+#   args:
+#   - 'apply'
+#   - '-f'
+#   - 'myapp.yaml'
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=hipster-cluster'
+
 steps:
 # This step deploys the new version of our container image
 # in the hello-cloudbuild Kubernetes Engine cluster.
@@ -23,5 +37,5 @@ steps:
   - '-f'
   - 'myapp.yaml'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=hipster-cluster'
+  - 'CLOUDSDK_COMPUTE_ZONE=registered'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-user-cluster1'

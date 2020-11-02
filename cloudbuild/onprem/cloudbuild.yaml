@@ -17,6 +17,7 @@ steps:
 # in the hello-cloudbuild Kubernetes Engine cluster.
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Deploy
+  dir: 'cloudbuild/onprem'
   args:
   - 'apply'
   - '-f'

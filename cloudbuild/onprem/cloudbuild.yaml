@@ -1,25 +1,26 @@
-steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/sh
-  id: Deploy to GKE onprem
-  dir: 'cloudbuild/onprem'
-  args:
-  - '-c'
-  - |
-    set -x && \
-    export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials hipster-cluster && \
-    kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
-
-
 # steps:
-# # This step deploys the new version of our container image
-# # in the hello-cloudbuild Kubernetes Engine cluster.
-# - name: 'gcr.io/cloud-builders/kubectl'
-#   id: Deploy
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: Deploy to GKE onprem
+#   dir: 'cloudbuild/onprem'
 #   args:
-#   - 'apply'
-#   - '-f'
-#   - 'myapp.yaml'
-#   env:
-#   - 'CLOUDSDK_CONTAINER_CLUSTER=my-user-cluster1'
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
+#     gcloud alpha container hub memberships get-credentials hipster-cluster && \
+#     kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
+
+
+steps:
+# This step deploys the new version of our container image
+# in the hello-cloudbuild Kubernetes Engine cluster.
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Deploy
+  args:
+  - 'apply'
+  - '-f'
+  - 'myapp.yaml'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=hipster-cluster'

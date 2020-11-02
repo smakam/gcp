@@ -37,5 +37,5 @@ steps:
   - '-f'
   - 'myapp.yaml'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=registered'
+  - 'CLOUDSDK_COMPUTE_ZONE='
   - 'CLOUDSDK_CONTAINER_CLUSTER=my-user-cluster1'

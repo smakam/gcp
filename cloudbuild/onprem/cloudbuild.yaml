@@ -1,7 +1,20 @@
+# steps:
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: Deploy to GKE onprem
+#   dir: 'cloudbuild/onprem'
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
+#     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
+#     kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
+
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
-  id: Deploy to GKE onprem
+  id: "Deploy to GKE on ABM"
   dir: 'cloudbuild/onprem'
   args:
   - '-c'
@@ -9,8 +22,7 @@ steps:
     set -x && \
     export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
-    kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
-
+    kubectl --kubeconfig=gateway-kubeconfig apply -f myapp.yaml
 
 # steps:
 # # This step deploys the new version of our container image

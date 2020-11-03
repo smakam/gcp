@@ -20,7 +20,7 @@ steps:
   - '-c'
   - |
     set -x && \
-    gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
+    gcloud alpha container hub memberships get-credentials hipster-cluster && \
     kubectl apply -f cloudbuild/onprem/myapp.yaml
 
 # steps:

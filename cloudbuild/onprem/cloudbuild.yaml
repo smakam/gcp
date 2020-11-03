@@ -11,6 +11,7 @@
 #     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
 #     kubectl --kubeconfig gateway-kubeconfig apply -f myapp.yaml
 
+
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
@@ -19,20 +20,31 @@ steps:
   - '-c'
   - |
     set -x && \
-    export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
-    kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+    kubectl apply -f cloudbuild/onprem/myapp.yaml
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/sh
-  id: "Deploy to GKE on GCP"
-  args:
-  - '-c'
-  - |
-    set -x && \
-    export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials hipster-cluster && \
-    kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+# steps:
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: "Deploy to GKE on onprem"
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
+#     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
+#     kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: "Deploy to GKE on GCP"
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
+#     gcloud alpha container hub memberships get-credentials hipster-cluster && \
+#     kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 # steps:
 # # This step deploys the new version of our container image

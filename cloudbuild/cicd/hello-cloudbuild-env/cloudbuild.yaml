@@ -13,18 +13,31 @@
 # limitations under the License.
 
 # [START cloudbuild-delivery]
+# steps:
+# # This step deploys the new version of our container image
+# # in the hello-cloudbuild Kubernetes Engine cluster.
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   id: Deploy
+#   args:
+#   - 'apply'
+#   - '-f'
+#   - 'kubernetes.yaml'
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-b'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cloudbuild'
+
+
 steps:
-# This step deploys the new version of our container image
-# in the hello-cloudbuild Kubernetes Engine cluster.
-- name: 'gcr.io/cloud-builders/kubectl'
-  id: Deploy
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
+  id: "Deploy to GKE on GCP"
   args:
-  - 'apply'
-  - '-f'
-  - 'kubernetes.yaml'
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cloudbuild'
+  - '-c'
+  - |
+    set -x && \
+    export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
+    gcloud alpha container hub memberships get-credentials hello-cloudbuild && \
+    kubectl --kubeconfig=gateway-kubeconfig apply -f kubernetes.yaml
 
 # This step copies the applied manifest to the production branch
 # The COMMIT_SHA variable is automatically

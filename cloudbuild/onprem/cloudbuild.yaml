@@ -31,7 +31,7 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gcp-kubeconfig" && \
-    gcloud container clusters get-credentials hipster-cluster --zone us-central1-c && \
+    gcloud container clusters get-credentials asm --zone us-central1-c && \
     kubectl --kubeconfig=gcp-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 # steps:

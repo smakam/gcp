@@ -31,33 +31,5 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gcp-kubeconfig" && \
-    gcloud container clusters get-credentials asm --zone us-central1-c && \
+    gcloud container clusters get-credentials icluster --zone us-central1-c && \
     kubectl --kubeconfig=gcp-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
-
-# steps:
-# # This step deploys the new version of our container image
-# # in the hello-cloudbuild Kubernetes Engine cluster.
-# - name: 'gcr.io/cloud-builders/kubectl'
-#   id: Deploy
-#   dir: 'cloudbuild/onprem'
-#   args:
-#   - 'apply'
-#   - '-f'
-#   - 'myapp.yaml'
-#   env:
-#   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-#   - 'CLOUDSDK_CONTAINER_CLUSTER=hipster-cluster'
-
-# steps:
-# # This step deploys the new version of our container image
-# # in the hello-cloudbuild Kubernetes Engine cluster.
-# - name: 'gcr.io/cloud-builders/kubectl'
-#   id: Deploy
-#   dir: 'cloudbuild/onprem'
-#   args:
-#   - 'apply'
-#   - '-f'
-#   - 'myapp.yaml'
-#   env:
-#   - 'CLOUDSDK_COMPUTE_ZONE='
-#   - 'CLOUDSDK_CONTAINER_CLUSTER=my-user-cluster1'

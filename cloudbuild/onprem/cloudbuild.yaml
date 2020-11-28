@@ -25,6 +25,17 @@ steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
+  id: "Deploy to EKS"
+  args:
+  - '-c'
+  - |
+    set -x && \
+    export KUBECONFIG="$(pwd)/gateway-kubeconfig" && \
+    gcloud alpha container hub memberships get-credentials awseks && \
+    kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
   id: "Deploy to GKE on GCP"
   args:
   - '-c'

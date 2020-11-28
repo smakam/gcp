@@ -32,7 +32,7 @@ steps:
     set -x && \
     export KUBECONFIG="$(pwd)/eks-kubeconfig" && \
     gcloud alpha container hub memberships get-credentials awseks && \
-    kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+    kubectl --kubeconfig=eks-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
@@ -43,7 +43,7 @@ steps:
     set -x && \
     export KUBECONFIG="$(pwd)/gkeaws-kubeconfig" && \
     gcloud alpha container hub memberships get-credentials cluster-0 && \
-    kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+    kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 
 - name: 'gcr.io/cloud-builders/gcloud'

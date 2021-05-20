@@ -23,16 +23,16 @@ steps:
 #     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
 #     kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   entrypoint: /bin/sh
-#   id: "Deploy to EKS"
-#   args:
-#   - '-c'
-#   - |
-#     set -x && \
-#     export KUBECONFIG="$(pwd)/eks-kubeconfig" && \
-#     gcloud alpha container hub memberships get-credentials awseks && \
-#     kubectl --kubeconfig=eks-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
+  id: "Deploy to EKS"
+  args:
+  - '-c'
+  - |
+    set -x && \
+    export KUBECONFIG="$(pwd)/eks-kubeconfig" && \
+    gcloud alpha container hub memberships get-credentials eksattcluster && \
+    kubectl --kubeconfig=eks-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh

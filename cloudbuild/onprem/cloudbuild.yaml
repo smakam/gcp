@@ -54,5 +54,5 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gcp-kubeconfig" && \
-    gcloud container clusters get-credentials icluster --zone us-central1-c && \
+    gcloud container clusters get-credentials anthosgcp --zone us-central1-c && \
     kubectl --kubeconfig=gcp-kubeconfig apply -f cloudbuild/onprem/myapp.yaml

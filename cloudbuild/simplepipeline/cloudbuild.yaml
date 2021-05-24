@@ -57,3 +57,27 @@ steps:
     export KUBECONFIG="$(pwd)/gcp-kubeconfig" && \
     gcloud container clusters get-credentials anthosgcp --zone us-central1-c && \
     kubectl --kubeconfig=gcp-kubeconfig apply -f kubernetes.yaml
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
+  id: "Deploy to EKS"
+  dir: 'cloudbuild/simplepipeline'
+  args:
+  - '-c'
+  - |
+    set -x && \
+    export KUBECONFIG="$(pwd)/eks-kubeconfig" && \
+    gcloud alpha container hub memberships get-credentials eksattcluster && \
+    kubectl --kubeconfig=eks-kubeconfig apply -f kubernetes.yaml
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
+  id: "Deploy to GKE on AWS"
+  dir: 'cloudbuild/simplepipeline'
+  args:
+  - '-c'
+  - |
+    set -x && \
+    export KUBECONFIG="$(pwd)/gkeaws-kubeconfig" && \
+    gcloud alpha container hub memberships get-credentials cluster-0 && \
+    kubectl --kubeconfig=gkeaws-kubeconfig apply -f kubernetes.yaml

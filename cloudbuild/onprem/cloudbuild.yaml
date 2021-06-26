@@ -36,13 +36,13 @@ steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
-  id: "Deploy to GKE on AWS"
+  id: "Deploy to onprem vmware cluster"
   args:
   - '-c'
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gkeaws-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials cluster-0 && \
+    gcloud alpha container hub memberships get-credentials user-cluster1 && \
     kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 

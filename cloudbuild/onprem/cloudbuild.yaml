@@ -23,16 +23,16 @@ steps:
 #     gcloud alpha container hub memberships get-credentials my-user-cluster1 && \
 #     kubectl --kubeconfig=gateway-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/sh
-  id: "Deploy to EKS"
-  args:
-  - '-c'
-  - |
-    set -x && \
-    export KUBECONFIG="$(pwd)/eks-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials eksattcluster && \
-    kubectl --kubeconfig=eks-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: "Deploy to EKS"
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/eks-kubeconfig" && \
+#     gcloud alpha container hub memberships get-credentials eksattcluster && \
+#     kubectl --kubeconfig=eks-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
@@ -45,16 +45,16 @@ steps:
     gcloud alpha container hub memberships get-credentials cluster-0 && \
     kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/sh
-  id: "Deploy to onprem vmware cluster"
-  args:
-  - '-c'
-  - |
-    set -x && \
-    export KUBECONFIG="$(pwd)/gkevmw-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials user-cluster1 && \
-    kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: "Deploy to onprem vmware cluster"
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/gkevmw-kubeconfig" && \
+#     gcloud alpha container hub memberships get-credentials user-cluster1 && \
+#     kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -65,5 +65,5 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gcp-kubeconfig" && \
-    gcloud container clusters get-credentials anthosgcp --zone us-central1-c && \
+    gcloud container clusters get-credentials gcp-anthos --zone us-central1-c && \
     kubectl --kubeconfig=gcp-kubeconfig apply -f cloudbuild/onprem/myapp.yaml

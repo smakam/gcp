@@ -36,17 +36,6 @@ steps:
 
 # - name: 'gcr.io/cloud-builders/gcloud'
 #   entrypoint: /bin/sh
-#   id: "Deploy to Anthos on AWS"
-#   args:
-#   - '-c'
-#   - |
-#     set -x && \
-#     export KUBECONFIG="$(pwd)/gkeaws-kubeconfig" && \
-#     gcloud alpha container hub memberships get-credentials cluster-0 && \
-#     kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
-
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   entrypoint: /bin/sh
 #   id: "Deploy to onprem vmware cluster"
 #   args:
 #   - '-c'
@@ -67,3 +56,15 @@ steps:
     export KUBECONFIG="$(pwd)/gcp-kubeconfig" && \
     gcloud container clusters get-credentials gcp-anthos --zone us-central1-c && \
     kubectl --kubeconfig=gcp-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
+
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
+  id: "Deploy to Anthos on AWS"
+  args:
+  - '-c'
+  - |
+    set -x && \
+    export KUBECONFIG="$(pwd)/gkeaws-kubeconfig" && \
+    gcloud container hub memberships get-credentials cluster-0 && \
+    kubectl --kubeconfig=gkeaws-kubeconfig apply -f cloudbuild/onprem/myapp.yaml

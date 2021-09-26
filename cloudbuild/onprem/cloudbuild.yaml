@@ -42,7 +42,7 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gkevmw-kubeconfig" && \
-    gcloud alpha container hub memberships get-credentials user-cluster1 && \
+    gcloud container hub memberships get-credentials user-cluster1 && \
     kubectl --kubeconfig=gkevmw-kubeconfig apply -f cloudbuild/onprem/myapp.yaml
 
 
